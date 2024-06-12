@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class CarController : MonoBehaviour
     //- de phan biet
     private float _moveInput;
     private float _steerInput;
-   
+    [SerializeField] private InputAction input;
  
     //tao gia tri ban dau
     void Start()
@@ -43,10 +44,10 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        _moveInput = Input.GetAxis("Vertical");
-        _steerInput = Input.GetAxis("Horizontal");
+        //_moveInput = Input.GetAxis("Vertical");
+        //_steerInput = Input.GetAxis("Horizontal");
         WheelAnimation();
-        BrakeControl();
+       // BrakeControl();
     }
     private void BrakeControl()
     {

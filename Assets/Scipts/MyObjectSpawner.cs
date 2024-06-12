@@ -9,14 +9,16 @@ namespace Game
         [Header("Custom Spawner")]
         [SerializeField] private GameObject objectSpawn;
         private GameObject _spawned;
+        GameManager _gameManager => GameManager.Instance;
         protected override bool CustomSpawnGameObject(Vector3 spawPoint, Vector3 spawnNormal)
         {
-            if(_spawned != null)
+            if(_gameManager.CarController != null)
             {
                 return true;
             }
             _spawned = Instantiate(objectSpawn);
             _spawned.transform.position = spawPoint;
+            _gameManager.CarController = _spawned.GetComponent<CarController>();
             return true;
         }
     

@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
        public static GameManager Instance => _instance;
+    public CarController CarController { get; set; }
     // Start is called before the first frame update
     private void Awake()
     {
