@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
     public enum WheelType
@@ -28,6 +29,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float speed = 50f;
     [SerializeField] private float steerSpeed = 30f;
     [SerializeField] private float maxSteerAngle = 30f;
+    [SerializeField] private Vector3 centerOfMass;
     //- de phan biet
     private float _moveInput;
     private float _steerInput;
@@ -36,7 +38,8 @@ public class CarController : MonoBehaviour
     //tao gia tri ban dau
     void Start()
     {
-        
+        var rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = centerOfMass;
     }
 
     // Update is called once per frame
@@ -94,7 +97,7 @@ public class CarController : MonoBehaviour
         {
             if (wheel.type == WheelType.Front) // Chỉ rẽ bánh xe phía trước
             {
-
+                float steerAngle = _steerInput * maxSteerAngle * steerSpeed;
                 wheel.collider.steerAngle = _steerInput * steerSpeed;// Điều chỉnh góc rẽ sau 0.5 thi goc moi se tinh lai
             }
         }
