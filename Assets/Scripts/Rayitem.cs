@@ -18,6 +18,7 @@ public class Rayitem : MonoBehaviour, IRayitem
     {
         Debug.Log("OnPointerEnter");
         gameObjectRenderer.material.color = activeColor;
+        UIManager.Instance.showInfoPanel(gameObject, transform.position);
     }
 
     public void OnPointExit()
