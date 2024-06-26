@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarController : MonoBehaviour
+public class CarController : NetworkBehaviour
 {
     public enum WheelType
     {
@@ -43,6 +44,8 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         _moveInput = Input.GetAxis("Vertical");
         _steerInput = Input.GetAxis("Horizontal");
         WheelAnimation();
@@ -78,6 +81,7 @@ public class CarController : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (!isLocalPlayer) return;
         Move();
         Steer();
     }
